@@ -1,0 +1,61 @@
+.congrats-container {
+  max-width: 600px;
+  margin: 100px auto;
+  padding: 40px 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.congrats-container h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #28a745;
+}
+
+.congrats-container p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.congrats-image {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.congrats-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.congrats-buttons button {
+  padding: 12px 20px;
+  font-size: 1rem;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.congrats-buttons button:hover {
+  background-color: #0056b3;
+}
+
+/* Prevent confetti from breaking layout */
+canvas {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  z-index: 0 !important;
+  pointer-events: none;
+}

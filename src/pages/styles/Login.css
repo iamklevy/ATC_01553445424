@@ -1,0 +1,102 @@
+.login-container {
+max-width: 400px;
+  width: 90%;
+  margin: 60px auto;
+  padding: 30px 25px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  animation: floatIn 0.8s ease forwards;
+  transform: translateY(30px);
+  opacity: 0;
+  transition: box-shadow 0.3s ease;
+}
+.login-container:hover {
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes floatIn {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 600;
+  color: #333;
+}
+
+.login-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-container input {
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: border-color 0.3s ease;
+}
+
+.login-container input:focus {
+  border-color: #4CAF50;
+  outline: none;
+}
+
+.login-container button {
+  padding: 12px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.login-container button:hover {
+  background-color: #45a049;
+  transform: scale(1.03);
+}
+
+.error-message,
+.success-message {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.error-message {
+  color: #e74c3c;
+}
+
+.success-message {
+  color: #2ecc71;
+}
+
+.signup-link {
+  display: block;
+  text-align: center;
+  margin-top: 18px;
+  font-size: 14px;
+  color: #555;
+}
+
+.signup-link a {
+  color: #4CAF50;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.signup-link a:hover {
+  color: #388e3c;
+  text-decoration: underline;
+}

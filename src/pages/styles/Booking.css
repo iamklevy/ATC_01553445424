@@ -1,0 +1,57 @@
+/* client/src/pages/styles/Booking.css */
+.booking-container {
+  max-width: 500px;
+  margin: 100px auto;
+  padding: 30px;
+  background: #f9f9f9;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+.booking-image {
+  max-width: 600px;
+  width: 90%;
+  display: block;
+  margin: 0 auto;
+  border-radius: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+.booking-container h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  text-align: center;
+}
+.event-meta, .event-price, .total-price {
+  margin: 10px 0;
+  font-size: 1.1rem;
+}
+.booking-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #1e88e5;
+  margin-bottom: 12px;
+}
+.booking-title {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 20px;
+  color: #333;
+}
+
+
+.booking-btn{
+  padding: 8px 12px;
+  background-color: #1e88e5;
+  color: white;
+  display: block;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.booking-btn:hover {
+  background-color: #1565c0;
+}
