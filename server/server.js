@@ -5,6 +5,8 @@ const dotenv = require('dotenv');
 const bodyparser = require('body-parser');
 const authRoutes = require('./routes/auth');
 const bookingRoutes = require('./routes/bookings');
+const adminRoutes = require('./routes/admin');
+const path = require('path');
 
 // Load environment variables
 dotenv.config();
@@ -13,12 +15,15 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(bodyparser.json());
 app.use(cors());
+
+
 //Routes
 app.use('/api', authRoutes);
 app.use('/api/booking', bookingRoutes);
-
+app.use('/api/admin', adminRoutes);
+// Serve static files from the "images" directory
+app.use('/images',  express.static(path.join(__dirname, 'images')));
 
 // Basic API test route
 app.get('/', (req, res) => {
@@ -32,6 +37,9 @@ app.get('/signup', (req, res) => {
 });
 app.get('/booking', (req, res) => {
   res.send('booking API is running...');
+});
+app.get('/admin', (req, res) => {
+  res.send('admin API is running...');
 });
 
 // Connect to MongoDB

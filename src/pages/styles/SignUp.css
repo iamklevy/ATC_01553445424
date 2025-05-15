@@ -46,7 +46,7 @@
 
 .signup-container button {
   padding: 14px;
-  background-color: #4CAF50;
+  background-color: #0474ec;
   color: white;
   font-size: 16px;
   font-weight: 600;
@@ -57,7 +57,7 @@
 }
 
 .signup-container button:hover {
-  background-color: #45a049;
+  background-color: #0f5eb3;
   transform: translateY(-2px);
 }
 
@@ -82,13 +82,13 @@
 }
 
 .login-link a {
-  color: #4CAF50;
+  color: #0474ec;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s ease, text-decoration 0.3s ease;
 }
 
 .login-link a:hover {
-  color: #388e3c;
+  color: #0f5fb4;
   text-decoration: underline;
 }

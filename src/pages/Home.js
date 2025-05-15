@@ -7,6 +7,8 @@ function Home() {
   const navigate = useNavigate();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
   const [bookedEventIds, setBookedEventIds] = useState([]); // Store IDs of booked events
+  const [events, setEvents] = useState([]);
+  
 
   useEffect(() => {
     const fetchBookings = async () => {
@@ -16,8 +18,8 @@ function Home() {
         const data = await response.json();
         if (response.ok) {
           // Extract event IDs from the user's bookings
-          const bookedIds = data.map((booking) => Number(booking.eventId));
-          console.log("Booked Event IDs:", bookedIds); // Debugging
+          const bookedIds = data.map((booking) => booking.eventId);
+          console.log("Booked Event IDs:", bookedIds);
           setBookedEventIds(bookedIds);
         } else {
           console.error("Error fetching bookings:", data.message);
@@ -37,88 +39,15 @@ function Home() {
     navigate("/login");
   };
 
-  const events = [
-    {
-      id: 1,
-      name: "Apple Silicon - Peak Performance",
-      date: "September 30, 2023",
-      location: "Apple Park, Cupertino, CA",
-      description:
-        "Apple Inc. is hosting its annual event to unveil new products and software updates.",
-      price: "$199",
-      image: require("../images/Apple-event.jpg"),
-    },
-    {
-      id: 2,
-      name: "Fortnite Chapter 3",
-      date: "September 9, 2023",
-      location: "Fortnite Battle Royal Island",
-      description:
-        "Epic Games is hosting a special in-game event for Fortnite players.",
-      price: "$99",
-      image: require("../images/fortnite-event.jpg"),
-    },
-    {
-      id: 3,
-      name: "Tesla Model Y Launch",
-      date: "October 5, 2022",
-      location: "Tesla Gigafactory, Austin, TX",
-      description:
-        "Tesla is hosting an event to showcase its latest electric vehicles and technology.",
-      price: "$60",
-      image: require("../images/tesla-event.jpg"),
-    },
-    {
-      id: 4,
-      name: "Harris vs Trump Presidential Debate",
-      date: "October 5, 2024",
-      location: "madison square garden, new york",
-      description:
-        "The presidential campaign event featuring Kamala Harris and Donald Trump.",
-      price: "$35",
-      image: require("../images/Harris-Trump-event.jpg"),
-    },
-    {
-      id: 5,
-      name: "SpaceX x horizon",
-      date: "October 5, 2023",
-      location: "SpaceX Launch Site, Cape Canaveral, FL",
-      description:
-        "SpaceX is hosting a launch event for its latest rocket and satellite mission.",
-      price: "FREE",
-      image: require("../images/spacex-event.png"),
-    },
-    {
-      id: 6,
-      name: "Lady Gaga - Mayhem",
-      date: "October 5, 2025",
-      location: "horizon stadium, los angeles",
-      description:
-        "Lady Gaga is performing live at horizon Stadium as part of her Mayhem Tour.",
-      price: "$699",
-      image: require("../images/ladygaga-event.png"),
-    },
-    {
-      id: 7,
-      name: "TheWeeknd - After Hours",
-      date: "October 5, 2024",
-      location: "MetLife Stadium, East Rutherford, NJ",
-      description:
-        "The Weeknd is performing live at MetLife Stadium as part of his After Hours Tour.",
-      price: "235$",
-      image: require("../images/theweeknd-event.jpg"),
-    },
-    {
-      id: 8,
-      name: "Travis Scott - Utopia",
-      date: "September 23, 2023",
-      location: "las vegas, nevada",
-      description:
-        "Travis Scott is performing live at las vegas T-mobile stadium as part of his Utopia Tour.",
-      price: "$599",
-      image: require("../images/travisscott-event.jpg"),
-    },
-  ];
+  const fetchEvents = async () => {
+    const res = await fetch("http://localhost:5000/api/admin/events");
+    const data = await res.json();
+    setEvents(data);
+  };
+
+   useEffect(() => {
+      fetchEvents();
+    }, []);
 
   return (
     <div className="page-wrapper">
@@ -135,6 +64,11 @@ function Home() {
             <button className="login-btn" onClick={handleLogout}>
               Logout
             </button>
+            {user.role === "admin" && (
+              <button className="login-btn" onClick={() => navigate("/admin")}>
+                Admin Panel
+              </button>
+            )}
           </div>
         ) : (
           <button className="login-btn" onClick={() => navigate("/login")}>
@@ -149,12 +83,12 @@ function Home() {
             className="event-card"
             onClick={() => setSelectedEvent(event)}
           >
-            {bookedEventIds.includes(event.id) ? (
-              <div className="booked-tag">Booked</div> // Show "Booked" tag if the event is booked
+            {bookedEventIds.includes(event._id) ? (
+              <div className="booked-tag">Booked</div>
             ) : (
-              <div className="price-badge">{event.price}</div> // Show price tag if the event is not booked
+              <div className="price-badge">{`$${event.price}`}</div>
             )}
-            <img src={event.image} alt={event.name} className="gallery-image" />
+            <img src={`http://localhost:5000${event.image}`} alt={event.name} className="event-card-image" />
             <h3 className="event-name">{event.name}</h3>
             <p className="event-meta">
               {event.date} . {event.location}
@@ -163,19 +97,20 @@ function Home() {
         ))}
       </div>
       {selectedEvent && (
+        console.log("Selected Event:", selectedEvent),
         <div className="event-modal" onClick={() => setSelectedEvent(null)}>
           <div
             className="event-modal-content"
             onClick={(e) => e.stopPropagation()}
           >
-            {bookedEventIds.includes(selectedEvent.id) ? (
-              <div className="booked-tag">Booked</div> // Show "Booked" tag if the event is booked
+            {bookedEventIds.includes(selectedEvent._id) ? (
+              <div className="booked-tag">Booked</div> 
             ) : (
-              <p className="price-badge">{selectedEvent.price}</p> // Show price tag if the event is not booked
+              <p className="price-badge">{`$${selectedEvent.price}`}</p>
             )}
             <div className="modal-image-container">
               <img
-                src={selectedEvent.image}
+                src={`http://localhost:5000${selectedEvent.image}`}
                 alt={selectedEvent.name}
                 className="modal-image"
               />
@@ -186,11 +121,11 @@ function Home() {
               {selectedEvent.date} . {selectedEvent.location}
             </p>
             <p className="event-description">{selectedEvent.description}</p>
-            {!bookedEventIds.includes(selectedEvent.id) && (
+            {!bookedEventIds.includes(selectedEvent._id) && (
               <button
                 className="book-now-button"
                 onClick={() =>
-                  navigate(`/booking/${selectedEvent.id}`, {
+                  navigate(`/booking/${selectedEvent._id}`, {
                     state: { event: selectedEvent },
                   })
                 }

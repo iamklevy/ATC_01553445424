@@ -50,7 +50,7 @@ max-width: 400px;
 
 .login-container button {
   padding: 12px;
-  background-color: #4CAF50;
+  background-color: #0474ec;
   color: white;
   font-size: 16px;
   font-weight: bold;
@@ -62,7 +62,7 @@ max-width: 400px;
 }
 
 .login-container button:hover {
-  background-color: #45a049;
+  background-color: #0c5cb1;
   transform: scale(1.03);
 }
 
@@ -90,13 +90,13 @@ max-width: 400px;
 }
 
 .signup-link a {
-  color: #4CAF50;
+  color: #0474ec;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s ease, text-decoration 0.3s ease;
 }
 
 .signup-link a:hover {
-  color: #388e3c;
+  color: #0d5db3;
   text-decoration: underline;
 }

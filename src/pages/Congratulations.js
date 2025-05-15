@@ -36,7 +36,7 @@ const Congratulations = () => {
       <h2>🎉 Congratulations!</h2>
       <p>Your booking for <strong>{eventName}</strong> is confirmed!</p>
       {eventImage && (
-        <img src={eventImage} alt="Event" className="congrats-image" />
+        <img src={`http://localhost:5000${eventImage}`} alt="Event" className="congrats-image" />
       )}
       <div className="congrats-buttons">
         <button onClick={() => navigate('/')}>Back to Home</button>

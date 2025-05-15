@@ -12,9 +12,9 @@ function Booking() {
   const [message, setMessage] = useState('');
 
   // Automatically set the selected event ID from the event passed via state
-  const selectedEventId = event?.id;
+  const selectedEventId = event?._id;
 
-  const priceNumber = parseFloat(event?.price.replace("$", "")) || 0;
+  const priceNumber = parseFloat(event?.price) || 0;
   const total = (priceNumber * tickets).toFixed(2);
 
   const handleBooking = async () => {
@@ -72,7 +72,7 @@ function Booking() {
 
   return (
     <div className="booking-container">
-      <img src={event.image} alt={event.name} className="booking-image" />
+      <img src={`http://localhost:5000${event.image}`} alt={event.name} className="booking-image" />
       <h2>Book: {event?.name}</h2>
       <p className="event-meta">
         {event?.date} · {event?.location}

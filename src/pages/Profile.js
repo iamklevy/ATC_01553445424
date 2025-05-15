@@ -66,7 +66,7 @@ function Profile() {
                   </div>
                   {booking.eventImage && (
                     <div className="event-image-card">
-                      <img src={booking.eventImage} alt={booking.eventName} />
+                      <img src={`http://localhost:5000${booking.eventImage}`} alt={booking.eventName} />
                     </div>
                   )}
                 </div>
