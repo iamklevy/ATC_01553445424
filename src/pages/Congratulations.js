@@ -12,16 +12,15 @@ const Congratulations = () => {
   const [showConfetti, setShowConfetti] = useState(true);
   const [,setFadeOut] = useState(false);
 
+  //effect to handle the confetti animation and fade out
   useEffect(() => {
-    const sound = new Audio('/booking-confirmation.mp3');
-    sound.play();
 
     const timer = setTimeout(() => {
-      setFadeOut(true); // Start fade-out
+      setFadeOut(true); 
     }, 3500);
 
     const stopTimer = setTimeout(() => {
-      setShowConfetti(false); // Remove Confetti completely
+      setShowConfetti(false); 
     }, 6500);
 
     return () => {
@@ -33,7 +32,7 @@ const Congratulations = () => {
   return (
     <div className="congrats-container">
       {showConfetti && <Confetti width={width} height={height} />}
-      <h2>🎉 Congratulations!</h2>
+      <h2>Congratulations!</h2>
       <p>Your booking for <strong>{eventName}</strong> is confirmed!</p>
       {eventImage && (
         <img src={`http://localhost:5000${eventImage}`} alt="Event" className="congrats-image" />

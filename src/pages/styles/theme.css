@@ -1,0 +1,304 @@
+/* theme.css */
+
+/* Root variables for light mode */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #181818;
+  --card-bg: #f9f9f9;
+  --filter-bg: #ffffff;
+  --input-bg: #f5f5f5;
+  --input-border: #ccc;
+  --input-focus: #1e88e5;
+  --modal-bg: rgba(255,255,255,0.95);
+  --shadow: 0 4px 20px rgba(0,0,0,0.08);
+  --primary: #1e88e5;
+  --primary-hover: #1565c0;
+  --danger: #ef4444;
+  --danger-hover: #dc2626;
+  --success: #28a745;
+  --footer-bg: #1a1a1a;
+  --footer-text: #ccc;
+}
+
+/* Dark mode overrides */
+body.dark {
+  --bg-color: #121212;
+  --text-color: #f0f0f0;
+  --card-bg: #181818;
+  --filter-bg: #232323;
+  --input-bg: #232323;
+  --input-border: #333;
+  --input-focus: #7f5af0;
+  --modal-bg: rgba(30,30,30,0.98);
+  --shadow: 0 4px 24px rgba(0,0,0,0.45);
+  --primary: #1e88e5;
+  --primary-hover: #1565c0;
+  --danger: #ef4444;
+  --danger-hover: #b91c1c;
+  --success: #2cb67d;
+  --footer-bg: #181818;
+  --footer-text: #aaa;
+}
+
+/* General body and background */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Card backgrounds (AdminPanel, event cards, modals, etc.) */
+.event-card,
+.event-modal-content,
+.admin-panel,
+.profile-container,
+.booking-container,
+.congrats-container,
+.modal-card {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color);
+  box-shadow: var(--shadow);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Header and filter bar */
+.header-bar,
+.profile-header {
+  background-color: #181818;
+  color: var(--text-color);
+  transition: background-color 0.3s;
+}
+
+.header-bar .greeting,
+.greeting {
+  color: #fff !important;
+}
+
+.filter-bar,
+.sticky-filter {
+  background: rgba(30, 30, 30, 0.35) !important;
+  color: var(--text-color);
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 8px 32px 0 rgba(31,38,135,0.18);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border-radius: 16px;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Inputs, selects, and file inputs */
+input,
+select,
+textarea {
+  background: var(--input-bg);
+  color: var(--text-color);
+  border: 1px solid var(--input-border);
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--input-focus);
+  outline: none;
+}
+
+/* Number inputs in filter bar */
+.filter-bar input[type="number"] {
+  background: var(--input-bg);
+  color: var(--text-color);
+  border: 1px solid var(--input-border);
+}
+
+.filter-bar input[type="number"]:focus {
+  border-color: var(--input-focus);
+  outline: none;
+}
+
+/* Ensure dropdowns are readable in both modes */
+.filter-bar select,
+.filter-bar option {
+  background: var(--input-bg);
+  color: var(--text-color);
+}
+
+/* Optional: Improve focus/hover for accessibility */
+.filter-bar select:focus {
+  border-color: var(--input-focus);
+  outline: none;
+}
+
+/* Buttons */
+button,
+.login-btn,
+.home-btn,
+.booking-btn,
+.book-now-button,
+.edit-button,
+.delete-button,
+.cancel-button {
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  transition: background 0.2s, color 0.2s;
+}
+button:hover,
+.login-btn:hover,
+.home-btn:hover,
+.booking-btn:hover, 
+.book-now-button:hover,
+.edit-button:hover {
+  background-color: var(--primary-hover);
+}
+.delete-button {
+  background-color: var(--danger);
+}
+.delete-button:hover {
+  background-color: var(--danger-hover);
+}
+.cancel-button {
+  background-color: #888;
+  color: #fff;
+}
+.cancel-button:hover {
+  background-color: #555;
+}
+
+/* Success and booked tags */
+.booked-tag {
+  background-color: var(--success);
+  color: #fff;
+}
+
+/* Price badge */
+.price-badge {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* Modal overlays */
+.modal-overlay,
+.event-modal {
+  background: rgba(20, 20, 20, 0.85) !important;
+  backdrop-filter: blur(2px);
+}
+
+/* Modal content */
+.event-modal-content,
+.modal-card {
+  background: var(--modal-bg) !important;
+  color: var(--text-color);
+}
+
+/* Footer */
+.footer {
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
+}
+.footer-text,
+.footer-text a {
+  color: var(--footer-text);
+}
+.footer-text a:hover {
+  color: #fff;
+}
+
+/* Miscellaneous */
+.event-meta,
+.event-category,
+.event-price,
+.event-name,
+.event-description,
+.profile-title,
+.section-title {
+  color: var(--text-color);
+}
+
+/* For images with white backgrounds in dark mode, add a subtle border */
+img,
+.event-card-image,
+.booking-image,
+.modal-image,
+.congrats-image {
+  background: #222;
+  border-radius: 12px;
+  border: 1px solid #222;
+}
+
+/* Scrollbar styling for dark mode */
+body.dark ::-webkit-scrollbar {
+  width: 10px;
+  background: #232323;
+}
+body.dark ::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 8px;
+}
+
+/* Ensure confetti canvas doesn't break dark mode */
+canvas {
+  background: transparent !important;
+}
+
+body.dark .event-card {
+  border: none !important;
+  box-shadow: var(--shadow);
+}
+body.dark .event-name {
+  color: #fff !important;
+}
+
+/* Make admin-panel h2 and h3 white in dark mode */
+body.dark .admin-panel h2,
+body.dark .admin-panel h3 {
+  color: #fff !important;
+}
+
+/* Make events-list-section h3 white in dark mode */
+body.dark .events-list-section h3 {
+  color: #fff !important;
+}
+
+/* Make event-category text white in dark mode */
+body.dark .event-category {
+  color: #fff !important;
+}
+
+/* Remove border from event-image in dark mode */
+body.dark .event-image {
+  border: none !important;
+}
+/* Make profile-info section dark and readable in dark mode */
+body.dark .profile-info {
+  background-color: #232323 !important;
+  color: #fff !important;
+  border: 1px solid #333;
+}
+
+/* Make booking cards dark in dark mode */
+body.dark .booking-card {
+  background: #181818 !important;
+  color: #fff !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+/* Make booking-content text readable in dark mode */
+body.dark .booking-content {
+  color: #fff !important;
+}
+
+/* Style booking-content details for clarity in dark mode */
+body.dark .booking-content h3 {
+  color: #fff !important;
+}
+
+body.dark .booking-content p {
+  color: #ccc !important;
+}
+
+/* Profile header in dark mode */
+body.dark .profile-header {
+  background-color: #232323 !important;
+  color: #fff;
+  border-bottom: 1px solid #333;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}

@@ -7,11 +7,22 @@ function Profile() {
   const [user, setUser] = useState(null);
   const [bookings, setBookings] = useState([]);
 
+  const [darkMode, setDarkMode] = useState(() => {
+    return localStorage.getItem("darkMode") === "true";
+  });
+
+  useEffect(() => {
+    document.body.classList.toggle("dark", darkMode);
+    localStorage.setItem("darkMode", darkMode);
+  }, [darkMode]);
+
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     if (storedUser) {
       setUser(storedUser);
     }
+
+    
 
     const fetchBookings = async () => {
       try {
@@ -44,6 +55,16 @@ function Profile() {
         <h1>{user.fullName}'s events</h1>
         <button className="home-btn" onClick={() => navigate("/")}>
           Back to Home
+        </button>
+        <button
+          onClick={() => setDarkMode((prev) => !prev)}
+          className="dark-light-toggle-btn"
+        >
+          <img
+            src={darkMode ? "/light-mode.png" : "/dark-mode.png"}
+            alt={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+            style={{ width: 24, height: 24 }}
+          />
         </button>
       </header>
       <main className="profile-main">

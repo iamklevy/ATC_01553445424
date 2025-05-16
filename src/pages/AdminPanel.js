@@ -8,11 +8,22 @@ function AdminPanel() {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [currentEditId, setCurrentEditId] = useState(null);
 
+  const [darkMode, setDarkMode] = useState(() => {
+      return localStorage.getItem("darkMode") === "true";
+    });
+  
+    useEffect(() => {
+      document.body.classList.toggle("dark", darkMode);
+      localStorage.setItem("darkMode", darkMode);
+    }, [darkMode]);
+
   const [formData, setFormData] = useState({
     name: "",
     description: "",
     date: "",
     price: "",
+    location: "",
+    category: "",
     image: null,
   });
 
@@ -33,6 +44,7 @@ function AdminPanel() {
       !formData.date ||
       !formData.price ||
       !formData.location ||
+      !formData.category ||
       !formData.image
     ) {
       alert("Please fill in all required fields, including the image.");
@@ -55,6 +67,7 @@ function AdminPanel() {
         date: formattedDate,
         price: formData.price,
         location: formData.location,
+        category: formData.category,
         image: formData.image.name,
       };
 
@@ -76,6 +89,8 @@ function AdminPanel() {
         name: "",
         description: "",
         date: "",
+        location: "",
+        category: "",
         price: "",
         image: null,
       });
@@ -101,6 +116,7 @@ function AdminPanel() {
         date: new Date(eventToEdit.date).toISOString().split("T")[0], 
         price: eventToEdit.price,
         location: eventToEdit.location,
+        category: eventToEdit.category,
         image: null,
       });
       setCurrentEditId(id);
@@ -125,7 +141,8 @@ function AdminPanel() {
         date: formattedDate,
         price: formData.price,
         location: formData.location,
-        image: formData.image ? formData.image.name : undefined, // optional
+        category: formData.category,
+        image: formData.image ? `/images/${formData.image.name}` : undefined,
       };
 
       const response = await fetch(
@@ -151,8 +168,44 @@ function AdminPanel() {
     }
   };
 
+  // Event categories
+  const categories = [
+    "Politics",
+    "Art",
+    "Festivals",
+    "Religious",
+    "Sports",
+    "Food",
+    "Health",
+    "Travel",
+    "Fashion",
+    "Entertainment",
+    "Science",
+    "Environment",
+    "History",
+    "Culture",
+    "Lifestyle",
+    "Gaming",
+    "Finance",
+    "Music",
+    "Technology",
+    "Education",
+    "Business",
+    "Other",
+  ];
+
   return (
     <div className="page-container">
+      <button
+          onClick={() => setDarkMode((prev) => !prev)}
+          className="dark-light-toggle-btn"
+        >
+          <img
+            src={darkMode ? "/light-mode.png" : "/dark-mode.png"}
+            alt={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+            style={{ width: 24, height: 24 }}
+          />
+        </button>
       <button className="home-btn" onClick={() => navigate("/")}>
         Back to Home
       </button>
@@ -183,6 +236,19 @@ function AdminPanel() {
             setFormData({ ...formData, location: e.target.value })
           }
         />
+        <select
+          value={formData.category}
+          onChange={(e) =>
+            setFormData({ ...formData, category: e.target.value })
+          }
+        >
+          <option value="">Select Category</option>
+          {categories.map((cat) => (
+            <option key={cat} value={cat}>
+              {cat}
+            </option>
+          ))}
+        </select>
         <input
           placeholder="Price"
           type="number"
@@ -208,11 +274,14 @@ function AdminPanel() {
             events.map((ev) => (
               <div key={ev._id} className="event-card">
                 <div className="event-details">
+            
                   <p className="event-name">{ev.name}</p>
                   <p className="event-meta">
                     {" "}
                     {ev.date} . {ev.location}
                   </p>
+
+                  <span className="event-category">{ev.category}</span>
                   <p className="event-price">${ev.price}</p>
 
                   <div className="event-actions">
@@ -243,9 +312,9 @@ function AdminPanel() {
                 </div>
                 {ev.image && (
                   <img
-                    className="event-image"
-                    src={`http://localhost:5000${ev.image}`}
-                    alt={ev.name}
+                  className="event-image"
+                  src={`http://localhost:5000${ev.image}`}
+                  alt={ev.name}
                   />
                 )}
               </div>
@@ -294,6 +363,19 @@ function AdminPanel() {
                 setFormData({ ...formData, location: e.target.value })
               }
             />
+            <select
+              value={formData.category}
+              onChange={(e) =>
+                setFormData({ ...formData, category: e.target.value })
+              }
+            >
+              <option value="">Select Category</option>
+              {categories.map((cat) => (
+                <option key={cat} value={cat}>
+                  {cat}
+                </option>
+              ))}
+            </select>
             <input
               type="number"
               placeholder="Price"

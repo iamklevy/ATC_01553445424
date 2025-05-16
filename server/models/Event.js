@@ -6,7 +6,7 @@ const eventSchema = new mongoose.Schema(
       type: String,
       unique: true,
       default: () => new mongoose.Types.ObjectId().toString(),
-    }, // Generate unique ID
+    },
     name: {
       type: String,
       required: [true, "Event name is required"],
@@ -28,6 +28,10 @@ const eventSchema = new mongoose.Schema(
     location: {
       type: String,
       required: [true, "Event location is required"],
+    },
+    category: {
+      type: String,
+      required: [true, "Event category is required"],
     },
     image: {
       type: String, 

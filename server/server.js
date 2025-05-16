@@ -2,10 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const bodyparser = require('body-parser');
 const authRoutes = require('./routes/auth');
 const bookingRoutes = require('./routes/bookings');
-const adminRoutes = require('./routes/admin');
+const adminRoutes = require('./routes/Events');
 const path = require('path');
 
 // Load environment variables

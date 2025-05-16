@@ -21,6 +21,21 @@
   font-size: 14px;
 }
 
+.dark-light-toggle-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1200;
+  padding: 12px 20px;
+  background-color: #eeeeee;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  transition: background-color 0.3s, color 0.3s;
+}
+
 .home-btn:hover {
   background-color: #146bb8;
 }
@@ -100,6 +115,7 @@
   overflow: visible;
 }
 
+
 .event-details {
   display: flex;
   flex-direction: column;
@@ -116,7 +132,7 @@
 .event-name {
   font-weight: bold;
   font-size: 1.1rem;
-  margin-bottom: 12px;
+  margin: 0;
 }
 
 .event-meta {
@@ -130,6 +146,12 @@
   overflow-wrap: break-word;
 }
 
+.event-category {
+  color: #000000;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 12px; 
+}
 .event-price {
   color: #1e88e5;
   font-size: 0.95rem;
@@ -155,7 +177,7 @@
   background-color: #ef4444;
   color: white;
   padding: 10px 14px;
-  margin-top: 140px;
+  margin-top: 120px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -170,7 +192,7 @@
 .edit-button {
   background-color: #32312f;
   margin-left: 12px;
-  margin-top: 140px;
+  margin-top: 120px;
   display: inline-block;  
   color: white;
   padding: 10px 21px;
@@ -268,3 +290,5 @@
   color: #fff;
   text-decoration: underline;
 }
+
+

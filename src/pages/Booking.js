@@ -1,5 +1,5 @@
 import "./styles/Booking.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function Booking() {
@@ -10,6 +10,17 @@ function Booking() {
   const user = JSON.parse(localStorage.getItem("user"));
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
+
+    const [darkMode, setDarkMode] = useState(() => {
+      return localStorage.getItem("darkMode") === "true";
+    });
+  
+    useEffect(() => {
+      document.body.classList.toggle("dark", darkMode);
+      localStorage.setItem("darkMode", darkMode);
+    }, [darkMode]);
+
+  
 
   // Automatically set the selected event ID from the event passed via state
   const selectedEventId = event?._id;
@@ -72,6 +83,16 @@ function Booking() {
 
   return (
     <div className="booking-container">
+       <button
+          onClick={() => setDarkMode((prev) => !prev)}
+          className="dark-light-toggle-btn"
+        >
+          <img
+            src={darkMode ? "/light-mode.png" : "/dark-mode.png"}
+            alt={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+            style={{ width: 24, height: 24 }}
+          />
+        </button>
       <img src={`http://localhost:5000${event.image}`} alt={event.name} className="booking-image" />
       <h2>Book: {event?.name}</h2>
       <p className="event-meta">
@@ -82,8 +103,9 @@ function Booking() {
       <p><strong>Name:</strong> {user.fullName}</p>
       <p><strong>Email:</strong> {user.email}</p>
       <label>
-        Number of Tickets:
+        Number of Tickets: 
         <input
+          className="ticket-input"
           type="number"
           min="1"
           defaultValue="1"
