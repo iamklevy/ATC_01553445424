@@ -3,19 +3,23 @@
   margin-bottom: 100px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;  
+  gap: 20px;
   padding: 20px;
   max-width: 100%;
   min-height: 400px;
   overflow-x: hidden;
   box-sizing: border-box;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.05));
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.05),
+    rgba(255, 255, 255, 0.05)
+  );
   border-radius: 20px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   flex-direction: column;
 }
 
-.relative{
+.relative {
   flex: 1;
 }
 .page-wrapper {
@@ -33,7 +37,6 @@
   background-color: #121212;
   color: white;
   padding: 1rem;
-  position: sticky;
   top: 0;
   z-index: 1000;
 }
@@ -49,7 +52,7 @@
   border-radius: 50px;
   cursor: pointer;
   font-weight: bold;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -65,15 +68,15 @@
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   position: relative;
   z-index: 11;
-  border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
 }
 
 .sticky-filter {
   position: sticky;
-  top: 70px;
+  top: 30px;
 }
 
 .filter-bar input,
@@ -94,7 +97,6 @@
   border-color: #1e88e5;
 }
 
-
 .event-card {
   background-color: var(--card-bg);
   border-radius: 15px;
@@ -107,8 +109,8 @@
   position: relative;
 }
 .event-card:hover {
-  transform: scale(1.05); 
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); 
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 .event-card-image {
   width: 100%;
@@ -170,12 +172,11 @@
 .top-left-greeting {
   position: absolute;
   top: 15px;
-  left: 20px; 
+  left: 20px;
   font-weight: bold;
   font-size: 18px;
   color: #333;
 }
-
 
 .event-modal {
   position: fixed;
@@ -200,8 +201,33 @@
   }
 }
 
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  font-size: 16px;
+  color: #555;
+}
+
+.loading::after {
+  content: "";
+  width: 40px;
+  height: 40px;
+  border: 5px solid rgba(0, 0, 0, 0.2);
+  border-top-color: #3498db;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .event-modal-content {
-background: white;
+  background: white;
   border-radius: 20px;
   padding: 30px;
   width: 90%;
@@ -244,7 +270,7 @@ background: white;
 }
 
 .event-description {
-  font-size: 1rem;
+  font-size: 0.98rem;
   margin-top: 15px;
   color: #555;
 }
@@ -290,7 +316,7 @@ background: white;
 }
 
 .login-btn {
- background-color: #0474ec;
+  background-color: #0474ec;
   color: white;
   border: none;
   margin-left: 10px;
@@ -347,7 +373,7 @@ background: white;
   font-size: 0.82rem;
   font-weight: 600;
   letter-spacing: 0.5px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
   z-index: 2;
   pointer-events: none;
   transition: background 0.3s, color 0.3s;

@@ -34,7 +34,7 @@ const eventSchema = new mongoose.Schema(
       required: [true, "Event category is required"],
     },
     image: {
-      type: String, 
+      type: String,
     },
   },
   {

@@ -8,14 +8,39 @@ function AdminPanel() {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [currentEditId, setCurrentEditId] = useState(null);
 
+  const categories = [
+    "Politics",
+    "Art",
+    "Festivals",
+    "Religious",
+    "Sports",
+    "Food",
+    "Health",
+    "Travel",
+    "Fashion",
+    "Entertainment",
+    "Science",
+    "Environment",
+    "History",
+    "Culture",
+    "Lifestyle",
+    "Gaming",
+    "Finance",
+    "Music",
+    "Technology",
+    "Education",
+    "Business",
+    "Other",
+  ];
+
   const [darkMode, setDarkMode] = useState(() => {
-      return localStorage.getItem("darkMode") === "true";
-    });
-  
-    useEffect(() => {
-      document.body.classList.toggle("dark", darkMode);
-      localStorage.setItem("darkMode", darkMode);
-    }, [darkMode]);
+    return localStorage.getItem("darkMode") === "true";
+  });
+
+  useEffect(() => {
+    document.body.classList.toggle("dark", darkMode);
+    localStorage.setItem("darkMode", darkMode);
+  }, [darkMode]);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -92,7 +117,7 @@ function AdminPanel() {
         location: "",
         category: "",
         price: "",
-        image: null,
+        image: "",
       });
     } catch (error) {
       console.error("Error during fetch:", error);
@@ -113,7 +138,7 @@ function AdminPanel() {
       setFormData({
         name: eventToEdit.name,
         description: eventToEdit.description,
-        date: new Date(eventToEdit.date).toISOString().split("T")[0], 
+        date: new Date(eventToEdit.date).toISOString().split("T")[0],
         price: eventToEdit.price,
         location: eventToEdit.location,
         category: eventToEdit.category,
@@ -168,44 +193,18 @@ function AdminPanel() {
     }
   };
 
-  // Event categories
-  const categories = [
-    "Politics",
-    "Art",
-    "Festivals",
-    "Religious",
-    "Sports",
-    "Food",
-    "Health",
-    "Travel",
-    "Fashion",
-    "Entertainment",
-    "Science",
-    "Environment",
-    "History",
-    "Culture",
-    "Lifestyle",
-    "Gaming",
-    "Finance",
-    "Music",
-    "Technology",
-    "Education",
-    "Business",
-    "Other",
-  ];
-
   return (
     <div className="page-container">
       <button
-          onClick={() => setDarkMode((prev) => !prev)}
-          className="dark-light-toggle-btn"
-        >
-          <img
-            src={darkMode ? "/light-mode.png" : "/dark-mode.png"}
-            alt={darkMode ? "Switch to light mode" : "Switch to dark mode"}
-            style={{ width: 24, height: 24 }}
-          />
-        </button>
+        onClick={() => setDarkMode((prev) => !prev)}
+        className="dark-light-toggle-btn"
+      >
+        <img
+          src={darkMode ? "/light-mode.png" : "/dark-mode.png"}
+          alt={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+          style={{ width: 24, height: 24 }}
+        />
+      </button>
       <button className="home-btn" onClick={() => navigate("/")}>
         Back to Home
       </button>
@@ -274,7 +273,6 @@ function AdminPanel() {
             events.map((ev) => (
               <div key={ev._id} className="event-card">
                 <div className="event-details">
-            
                   <p className="event-name">{ev.name}</p>
                   <p className="event-meta">
                     {" "}
@@ -312,9 +310,9 @@ function AdminPanel() {
                 </div>
                 {ev.image && (
                   <img
-                  className="event-image"
-                  src={`http://localhost:5000${ev.image}`}
-                  alt={ev.name}
+                    className="event-image"
+                    src={`http://localhost:5000${ev.image}`}
+                    alt={ev.name}
                   />
                 )}
               </div>

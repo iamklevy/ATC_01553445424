@@ -8,19 +8,17 @@ function Booking() {
   const event = state?.event;
   const [tickets, setTickets] = useState(1);
   const user = JSON.parse(localStorage.getItem("user"));
-  const [error, setError] = useState('');
-  const [message, setMessage] = useState('');
+  const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
 
-    const [darkMode, setDarkMode] = useState(() => {
-      return localStorage.getItem("darkMode") === "true";
-    });
-  
-    useEffect(() => {
-      document.body.classList.toggle("dark", darkMode);
-      localStorage.setItem("darkMode", darkMode);
-    }, [darkMode]);
+  const [darkMode, setDarkMode] = useState(() => {
+    return localStorage.getItem("darkMode") === "true";
+  });
 
-  
+  useEffect(() => {
+    document.body.classList.toggle("dark", darkMode);
+    localStorage.setItem("darkMode", darkMode);
+  }, [darkMode]);
 
   // Automatically set the selected event ID from the event passed via state
   const selectedEventId = event?._id;
@@ -30,45 +28,55 @@ function Booking() {
 
   const handleBooking = async () => {
     if (!selectedEventId) {
-      setError('No event selected');
+      setError("No event selected");
       return;
     }
     try {
-      const response = await fetch('http://localhost:5000/api/booking', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userId: user.id, eventId: selectedEventId, tickets, eventName: event.name, eventImage: event.image, username: user.fullName }),
+      const response = await fetch("http://localhost:5000/api/booking", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userId: user.id,
+          eventId: selectedEventId,
+          tickets,
+          eventName: event.name,
+          eventImage: event.image,
+          username: user.fullName,
+        }),
       });
 
       const data = await response.json();
 
-     if (response.ok) {
-  setMessage(data.message);
+      if (response.ok) {
+        setMessage(data.message);
 
-  // Save to localStorage so profile page can retrieve it
-  const storedBookings = JSON.parse(localStorage.getItem("bookings")) || [];
-  const newBooking = {
-    userEmail: user.email,
-    eventName: event.name,
-    eventImage: event.image,
-    eventDate: event.date,
-    eventLocation: event.location,
-    ticketCount: tickets,
-  };
-  localStorage.setItem("bookings", JSON.stringify([...storedBookings, newBooking]));
+        // Save to localStorage so profile page can retrieve it
+        const storedBookings =
+          JSON.parse(localStorage.getItem("bookings")) || [];
+        const newBooking = {
+          userEmail: user.email,
+          eventName: event.name,
+          eventImage: event.image,
+          eventDate: event.date,
+          eventLocation: event.location,
+          ticketCount: tickets,
+        };
+        localStorage.setItem(
+          "bookings",
+          JSON.stringify([...storedBookings, newBooking])
+        );
 
-  navigate('/congratulations', {
-    state: {
-      eventImage: event.image,
-      eventName: event.name,
-    },
-  });
-}
- else {
+        navigate("/congratulations", {
+          state: {
+            eventImage: event.image,
+            eventName: event.name,
+          },
+        });
+      } else {
         setError(data.message);
       }
     } catch (err) {
-      setError('Something went wrong, please try again later.');
+      setError("Something went wrong, please try again later.");
     }
   };
 
@@ -83,27 +91,35 @@ function Booking() {
 
   return (
     <div className="booking-container">
-       <button
-          onClick={() => setDarkMode((prev) => !prev)}
-          className="dark-light-toggle-btn"
-        >
-          <img
-            src={darkMode ? "/light-mode.png" : "/dark-mode.png"}
-            alt={darkMode ? "Switch to light mode" : "Switch to dark mode"}
-            style={{ width: 24, height: 24 }}
-          />
-        </button>
-      <img src={`http://localhost:5000${event.image}`} alt={event.name} className="booking-image" />
+      <button
+        onClick={() => setDarkMode((prev) => !prev)}
+        className="dark-light-toggle-btn"
+      >
+        <img
+          src={darkMode ? "/light-mode.png" : "/dark-mode.png"}
+          alt={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+          style={{ width: 24, height: 24 }}
+        />
+      </button>
+      <img
+        src={`http://localhost:5000${event.image}`}
+        alt={event.name}
+        className="booking-image"
+      />
       <h2>Book: {event?.name}</h2>
       <p className="event-meta">
         {event?.date} · {event?.location}
       </p>
       <p className="event-price">Price per ticket: {event?.price}</p>
       <h3 className="booking-title">Booking Details</h3>
-      <p><strong>Name:</strong> {user.fullName}</p>
-      <p><strong>Email:</strong> {user.email}</p>
+      <p>
+        <strong>Name:</strong> {user.fullName}
+      </p>
+      <p>
+        <strong>Email:</strong> {user.email}
+      </p>
       <label>
-        Number of Tickets: 
+        Number of Tickets:
         <input
           className="ticket-input"
           type="number"

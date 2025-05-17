@@ -21,7 +21,9 @@
   font-size: 24px;
   text-align: center;
 }
-.event-meta, .event-price, .total-price {
+.event-meta,
+.event-price,
+.total-price {
   margin: 10px 0;
   font-size: 1.1rem;
 }
@@ -37,7 +39,7 @@
   font-size: 20px;
   color: #333;
 }
-.ticket-input{
+.ticket-input {
   margin-left: 10px;
   border-radius: 5px;
   background: rgba(255, 255, 255, 0.15);
@@ -59,7 +61,7 @@
   border-radius: 50px;
   cursor: pointer;
   font-weight: bold;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -80,7 +82,7 @@
   display: block;
 }
 
-.booking-btn{
+.booking-btn {
   padding: 8px 12px;
   background-color: #1e88e5;
   color: white;

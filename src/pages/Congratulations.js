@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import './styles/Congratulations.css';
-import Confetti from 'react-confetti';
-import { useWindowSize } from '@react-hook/window-size';
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import "./styles/Congratulations.css";
+import Confetti from "react-confetti";
+import { useWindowSize } from "@react-hook/window-size";
 
 const Congratulations = () => {
   const location = useLocation();
@@ -10,17 +10,16 @@ const Congratulations = () => {
   const [width, height] = useWindowSize();
   const { eventImage, eventName } = location.state || {};
   const [showConfetti, setShowConfetti] = useState(true);
-  const [,setFadeOut] = useState(false);
+  const [, setFadeOut] = useState(false);
 
   //effect to handle the confetti animation and fade out
   useEffect(() => {
-
     const timer = setTimeout(() => {
-      setFadeOut(true); 
+      setFadeOut(true);
     }, 3500);
 
     const stopTimer = setTimeout(() => {
-      setShowConfetti(false); 
+      setShowConfetti(false);
     }, 6500);
 
     return () => {
@@ -33,13 +32,19 @@ const Congratulations = () => {
     <div className="congrats-container">
       {showConfetti && <Confetti width={width} height={height} />}
       <h2>Congratulations!</h2>
-      <p>Your booking for <strong>{eventName}</strong> is confirmed!</p>
+      <p>
+        Your booking for <strong>{eventName}</strong> is confirmed!
+      </p>
       {eventImage && (
-        <img src={`http://localhost:5000${eventImage}`} alt="Event" className="congrats-image" />
+        <img
+          src={`http://localhost:5000${eventImage}`}
+          alt="Event"
+          className="congrats-image"
+        />
       )}
       <div className="congrats-buttons">
-        <button onClick={() => navigate('/')}>Back to Home</button>
-        <button onClick={() => navigate('/profile')}>See My Bookings</button>
+        <button onClick={() => navigate("/")}>Back to Home</button>
+        <button onClick={() => navigate("/profile")}>See My Bookings</button>
       </div>
     </div>
   );

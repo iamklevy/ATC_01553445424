@@ -22,8 +22,6 @@ function Profile() {
       setUser(storedUser);
     }
 
-    
-
     const fetchBookings = async () => {
       try {
         if (!storedUser) return;
@@ -46,7 +44,9 @@ function Profile() {
   }, []);
 
   if (!user) {
-    return <div className="profile-container">Please log in to view profile.</div>;
+    return (
+      <div className="profile-container">Please log in to view profile.</div>
+    );
   }
 
   return (
@@ -83,11 +83,16 @@ function Profile() {
                   <div className="booking-content">
                     <h3>{booking.eventName}</h3>
                     <p>Tickets: {booking.tickets}</p>
-                    <p>Booked At: {new Date(booking.bookedAt).toLocaleString()}</p>
+                    <p>
+                      Booked At: {new Date(booking.bookedAt).toLocaleString()}
+                    </p>
                   </div>
                   {booking.eventImage && (
                     <div className="event-image-card">
-                      <img src={`http://localhost:5000${booking.eventImage}`} alt={booking.eventName} />
+                      <img
+                        src={`http://localhost:5000${booking.eventImage}`}
+                        alt={booking.eventName}
+                      />
                     </div>
                   )}
                 </div>
@@ -99,7 +104,9 @@ function Profile() {
         </section>
       </main>
       <footer className="footer">
-        <p className="footer-text">© 2025 Event Booking System. All rights reserved.</p>
+        <p className="footer-text">
+          © 2025 Event Booking System. All rights reserved.
+        </p>
         <p className="footer-text">Terms of Service | Privacy Policy</p>
       </footer>
     </div>

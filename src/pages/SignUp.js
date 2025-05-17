@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import './styles/SignUp.css';
+import React, { useState } from "react";
+import "./styles/SignUp.css";
 
 const SignUp = () => {
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [message, setMessage] = useState(null);
 
@@ -12,9 +12,9 @@ const SignUp = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:5000/api/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("http://localhost:5000/api/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ fullName, email, password }),
       });
 
@@ -22,15 +22,15 @@ const SignUp = () => {
 
       if (response.ok) {
         setMessage(data.message);
-        setFullName('');
-        setEmail('');
-        setPassword('');
-        window.location.href = '/login'; // Redirect to login page after successful signup
+        setFullName("");
+        setEmail("");
+        setPassword("");
+        window.location.href = "/login"; 
       } else {
         setError(data.message);
       }
     } catch (err) {
-      setError('Something went wrong, please try again later.');
+      setError("Something went wrong, please try again later.");
     }
   };
 

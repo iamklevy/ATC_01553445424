@@ -3,18 +3,17 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  width: 100%; 
+  width: 100%;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-
 .page-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  width: 100%; 
+  width: 100%;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -31,7 +30,7 @@
   border-radius: 50px;
   cursor: pointer;
   font-weight: bold;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -41,7 +40,7 @@
   padding: 2rem;
   max-width: 900px;
   margin: auto;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: "Segoe UI", sans-serif;
   color: #222;
 }
 
@@ -100,8 +99,6 @@
 .profile-bookings {
   margin-top: 2rem;
 }
-
-
 
 /* Bookings grid */
 .bookings-grid {

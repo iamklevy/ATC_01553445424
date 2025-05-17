@@ -20,7 +20,6 @@ const AdminRoute = ({ children }) => {
 };
 
 function App() {
-
   return (
     <Router>
       <Routes>
@@ -30,7 +29,13 @@ function App() {
         <Route path="/booking/:id" element={<Booking />} />
         <Route path="/congratulations" element={<Congratulations />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/admin"   element={<AdminRoute><AdminPanel /></AdminRoute>}
+        <Route
+          path="/admin"
+          element={
+            <AdminRoute>
+              <AdminPanel />
+            </AdminRoute>
+          }
         />
       </Routes>
     </Router>
