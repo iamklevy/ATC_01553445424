@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# Event Booking System - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Overview
+This is the frontend application for the Event Booking System. Built with React, it allows users to browse events, make bookings, and manage their profiles.
 
-## Available Scripts
+## Prerequisites
+- Node.js (version 16 or higher recommended)
+- npm or yarn package manager
 
-In the project directory, you can run:
+## Installation
+```bash
+git clone <repo-url>
+npm install
 
-### `npm start`
+## Running the Project
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# To start the development server, run:
+npm start server
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# To start the development front-end, run:
+npm start start
 
-### `npm test`
+- The server will be available at http://localhost:5000.
+- The app itself will be available at http://localhost:5001.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Environment Variables
 
-### `npm run build`
+#If needed, create a .env file in the frontend directory with:
+MONGO_URI=<your-mongodb-connection-string>
+JWT_SECRET=<your-jwt-secret>
+PORT=5000
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+you can generate JWT_SECRET by unning -> node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Project Structure
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+/server
+  /images  - app images
+  /models       - mongodb models for (Bookings, Events, Users, etc)
+  /routes    - API calls 
+    /auth  - login, signup APIs
+    /booking       - bookings APIs
+    /Event  - API calls for the admin to cerate, update, read events.
+  /server.js -  server Middleware, Routes and Connection to MongoDB.
 
-### `npm run eject`
+/src
+  /pages       - App pages (Home, Profile, Admin, etc.)
+  App.js     - App entry point
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Note
+Make sure backend API is running before starting the frontend.
+Make sure MongoDB is running or accessible.
+Use Postman or similar tools to test API endpoints.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
