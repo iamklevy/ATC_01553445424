@@ -331,3 +331,29 @@ background: white;
   color: #fff;
   text-decoration: underline;
 }
+.event-image-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.event-category-badge {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  background: rgba(30, 30, 30, 0.85);
+  color: #fff;
+  padding: 3px 10px;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  z-index: 2;
+  pointer-events: none;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark .event-category-badge {
+  background: rgba(30, 30, 30, 0.85);
+  color: #fff;
+}

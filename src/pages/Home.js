@@ -1,5 +1,5 @@
 import "./styles/Home.css";
-import "./styles/theme.css";
+import "./styles/Themes.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -64,6 +64,7 @@ function Home() {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    document.body.classList.remove('dark');
     setUser(null);
     navigate("/login");
   };
@@ -163,11 +164,16 @@ function Home() {
             ) : (
               <div className="price-badge">{`$${event.price}`}</div>
             )}
-            <img
-              src={`http://localhost:5000${event.image}`}
-              alt={event.name}
-              className="event-card-image"
-            />
+            <div className="event-image-wrapper">
+              <img
+                src={`http://localhost:5000${event.image}`}
+                alt={event.name}
+                className="event-card-image"
+              />
+              {event.category && (
+                <span className="event-category-badge">{event.category}</span>
+              )}
+            </div>
             <h3 className="event-name">{event.name}</h3>
             <p className="event-meta">
               {event.date} . {event.location}
@@ -188,12 +194,15 @@ function Home() {
               ) : (
                 <p className="price-badge">{`$${selectedEvent.price}`}</p>
               )}
-              <div className="modal-image-container">
+              <div className="modal-image-container" style={{ position: "relative" }}>
                 <img
                   src={`http://localhost:5000${selectedEvent.image}`}
                   alt={selectedEvent.name}
                   className="modal-image"
                 />
+                {selectedEvent.category && (
+                  <span className="event-category-badge">{selectedEvent.category}</span>
+                )}
               </div>
 
               <h2 className="event-name">{selectedEvent.name}</h2>
