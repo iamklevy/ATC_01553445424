@@ -46,10 +46,10 @@ you can generate JWT_SECRET by unning -> node -e "console.log(require('crypto').
 /src
   /pages       - App pages (Home, Profile, Admin, etc.)
   App.js     - App entry point
+```
 
 
-
-## Note
+## Notes
 Make sure backend API is running before starting the frontend.
 Make sure MongoDB is running or accessible.
 Use Postman or similar tools to test API endpoints.
